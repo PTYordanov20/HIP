@@ -1,53 +1,12 @@
 #include "menu.h"
 
-bool checkMouseButton()
-{
-    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-Vector2 chooseOption(Vector2 mousePosition)
-{
-    Rectangle buttonCollision = { 0, 0, 0, 0 };
-    Vector2 buttonPosition = { -1000, -1000 };
-
-    float coordinatesY[2] = { 400, 500 };
-
-    for (int i = 0; i < 2; i++)
-    {
-        buttonCollision = { 620, coordinatesY[i], 300, 90 };
-
-        //  Checks if the mouse position is on one of the buttons
-        if (CheckCollisionPointRec(mousePosition, buttonCollision))
-        {
-            // Checks if it's clicked
-            if (checkMouseButton() == 1)
-            {
-                return buttonPosition = { 620, coordinatesY[i] };
-            }
-            else
-            {
-                return buttonPosition = { 620 , coordinatesY[i] };
-            }
-        }
-    }
-}
-
-// Visualise text in game menu
-
-void displayMenuText()
+/*void displayMenuText()
 {
     // Visualise button text in game menu
     DrawText("Calculate", 725, 650, 60, WHITE);
     DrawText("Guide", 725, 750, 60, WHITE);
     DrawText("Quit", 725, 850, 60, RED);
-}
+}*/
 
 void startApp() {
     //Initializing screen resolution
@@ -56,27 +15,43 @@ void startApp() {
     ToggleFullscreen();
 
     Texture2D mainMenu = LoadTexture("./textures/mainMenu.png");
+    Texture2D button1 = LoadTexture("./textures/mainMenuButton1.png");
+    Texture2D button2 = LoadTexture("./textures/mainMenuButton2.png");
+    Texture2D button3 = LoadTexture("./textures/mainMenuButton3.png");
 
+    const int buttonX = 700;
+    const int button1Y = 620;
+    const int button2Y = 720;
+    const int button3Y = 820;
 
-    Vector2 mousePosition = { -100, -100 };
+    Rectangle buttonRect1 = { buttonX, button1Y, button1.width, button1.height };
+    Rectangle buttonRect2 = { buttonX, button2Y, button2.width, button2.height };
+    Rectangle buttonRect3 = { buttonX, button3Y, button3.width, button3.height };
 
     while (!WindowShouldClose())
     {
-        BeginDrawing();
 
-        // Tracks mouse cursor position
-        mousePosition = GetMousePosition();
+        BeginDrawing();
 
         ClearBackground(RAYWHITE);
 
         DrawTexture(mainMenu, 0, 0, WHITE);
-        displayMenuText();
+        DrawTexture(button1, buttonX, button1Y, WHITE);
+        DrawTexture(button2, buttonX, button2Y, WHITE);
+        DrawTexture(button3, buttonX, button3Y, WHITE);
+
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), buttonRect3)) {
+            CloseWindow();
+        }
 
         EndDrawing();
     }
 
-    CloseWindow();
-
     // Unloads textures
     UnloadTexture(mainMenu);
+    UnloadTexture(button1);
+    UnloadTexture(button2);
+    UnloadTexture(button3);
+
+    CloseWindow();
 }
