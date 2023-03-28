@@ -81,8 +81,8 @@ void displayMenu(Texture2D menu, Texture2D button1, Texture2D button2, Texture2D
     displayButtons(button1, button2, button3);
 }
 
-void displayCalculate(Texture2D test) {
-    DrawTextureEx(test, { 0, 0 }, 0, 1, WHITE);
+void displayCalculate(Texture2D CalcBackground) {
+    DrawTextureEx(CalcBackground, { 0, 0 }, 0, 1, WHITE);
 }
 
 void startApp() {
@@ -95,14 +95,15 @@ void startApp() {
     Texture2D button1 = LoadTexture("./textures/mainMenuButton1.png");
     Texture2D button2 = LoadTexture("./textures/mainMenuButton2.png");
     Texture2D button3 = LoadTexture("./textures/mainMenuButton3.png");
- 
+    Texture2D CalcBackground = LoadTexture("./textures/calculatorBackground.png");
+
     Vector2 mousePosition = { -100, -100 };
     Vector2 menuButtonPosition = { 0, 0 };
 
     Rectangle buttonQuitCollision = { 700, 820, 375, 105 };
     Rectangle buttonFrames = { 0, 0, (float)(button1.width), (float)button1.height };
     // Checks if the players has clicked "Calcualte"
-    bool Calculate = 0;
+    bool Calculate = false;
 
 
     while (!WindowShouldClose())
@@ -115,12 +116,14 @@ void startApp() {
 
         ClearBackground(RAYWHITE);
 
-        if (buttonCalculateClicked(menuButtonPosition, mousePosition) == 0 && Calculate == 0)
+        if (buttonCalculateClicked(menuButtonPosition, mousePosition) == 0 && Calculate == false)
         {
             displayMenu(mainMenu, button1, button2, button3);
         }
         else {
-           //the calculator
+            displayCalculate(CalcBackground);
+            Calculate = true; \
+                buttonQuitCollision = { -100, -100, 0, 0 };
         }
 
 
@@ -137,6 +140,7 @@ void startApp() {
     UnloadTexture(button1);
     UnloadTexture(button2);
     UnloadTexture(button3);
+    UnloadTexture(CalcBackground);
 
     CloseWindow();
 }
