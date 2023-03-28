@@ -95,15 +95,12 @@ void startApp() {
     Texture2D button1 = LoadTexture("./textures/mainMenuButton1.png");
     Texture2D button2 = LoadTexture("./textures/mainMenuButton2.png");
     Texture2D button3 = LoadTexture("./textures/mainMenuButton3.png");
-    Texture2D test = LoadTexture("./textures/piko.jpg");
-
+ 
     Vector2 mousePosition = { -100, -100 };
     Vector2 menuButtonPosition = { 0, 0 };
 
     Rectangle buttonQuitCollision = { 700, 820, 375, 105 };
-    Rectangle buttonFrame1 = { 0, 0, (float)(button1.width), (float)button1.height };
-    Rectangle buttonFrame2 = { 0, 0, (float)(button1.width), (float)button1.height };
-    Rectangle buttonFrame3 = { 0, 0, (float)(button1.width), (float)button1.height };
+    Rectangle buttonFrames = { 0, 0, (float)(button1.width), (float)button1.height };
     // Checks if the players has clicked "Calcualte"
     bool Calculate = 0;
 
@@ -123,8 +120,7 @@ void startApp() {
             displayMenu(mainMenu, button1, button2, button3);
         }
         else {
-            displayCalculate(test);
-            //the calculator
+           //the calculator
         }
 
 
