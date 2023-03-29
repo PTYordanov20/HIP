@@ -259,10 +259,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="calculator.cpp" />
+    <ClCompile Include="calculatorMechanics.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="calculator.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="menu.h" />
   </ItemGroup>

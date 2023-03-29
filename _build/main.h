@@ -1,10 +1,6 @@
 #pragma once
 
 #include "raylib.h"
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include <cstring>
-#include <string>
 #include "menu.h"
+#include "calculator.h"
 using namespace std;

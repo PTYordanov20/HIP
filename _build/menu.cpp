@@ -104,7 +104,6 @@ void displayMenu(Texture2D menu, Texture2D button1, Texture2D button1Hover, Text
 {
     // Visualise menu background
     DrawTextureEx(menu, { 0, 0 }, 0, 1, WHITE);
-
     // Visualise buttons
     displayButtons(button1, button1Hover, button2, button2Hover, button3, button3Hover);
 }
@@ -129,6 +128,9 @@ void startApp() {
     Texture2D button2Hover = LoadTexture("./textures/mainMenuButton2Hover.png");
     Texture2D button3Hover = LoadTexture("./textures/mainMenuButton3Hover.png");
     Texture2D CalcBackground = LoadTexture("./textures/calculatorBackground.png");
+
+    Texture2D metals = LoadTexture("./textures/ElementsMetals.png");
+    Texture2D nonmetals = LoadTexture("./textures/ElementsNonmetals.png");
 
     Vector2 mousePosition = { -100, -100 };
     Vector2 menuButtonPosition = { 0, 0 };
@@ -156,8 +158,10 @@ void startApp() {
         }
         else {
             displayCalculate(CalcBackground);
-            Calculate = true; \
-                buttonQuitCollision = { -100, -100, 0, 0 };
+            Calculate = true;
+
+
+            buttonQuitCollision = { -100, -100, 0, 0 };
         }
 
 
