@@ -20,7 +20,7 @@ Vector2 chooseOption(Vector2 mousePosition)
 
     for (int i = 0; i < 3; i++)
     {
-        buttonCollision = { 700, coordinatesY[i], 375, 105 };
+        buttonCollision = { 800, coordinatesY[i], 375, 105 };
 
         //  Checks if the mouse position is on one of the buttons
         if (CheckCollisionPointRec(mousePosition, buttonCollision))
@@ -28,11 +28,11 @@ Vector2 chooseOption(Vector2 mousePosition)
             // Checks if it's clicked
             if (checkMouseButton() == 1)
             {
-                return buttonPosition = { 700, coordinatesY[i] };
+                return buttonPosition = { 800, coordinatesY[i] };
             }
             else
             {
-                return buttonPosition = { 700 , coordinatesY[i] };
+                return buttonPosition = { 800 , coordinatesY[i] };
             }
         }
     }
@@ -40,7 +40,7 @@ Vector2 chooseOption(Vector2 mousePosition)
 // Checks if the Calculate button is clicked
 bool buttonCalculateClicked(Vector2 buttonPosition, Vector2 mousePosition)
 {
-    Rectangle buttonPlay = { 700, 620, 375, 105 };
+    Rectangle buttonPlay = { 800, 620, 375, 105 };
 
     if (CheckCollisionPointRec(mousePosition, buttonPlay))
     {
@@ -61,19 +61,19 @@ bool buttonQuitClicked(Vector2 buttonPosition, Vector2 mousePosition, Rectangle 
 void displayButtons(Texture2D button1, Texture2D button1Hover, Texture2D button2, Texture2D button2Hover, Texture2D button3, Texture2D button3Hover)
 {
     // Define rectangles for each button
-    Rectangle button1Rect = { 700, 620, button1.width, button1.height };
-    Rectangle button2Rect = { 700, 720, button2.width, button2.height };
-    Rectangle button3Rect = { 700, 820, button3.width, button3.height };
+    Rectangle button1Rect = { 800, 620, button1.width, button1.height };
+    Rectangle button2Rect = { 800, 720, button2.width, button2.height };
+    Rectangle button3Rect = { 800, 820, button3.width, button3.height };
 
     // Check if mouse is hovering over button 1
     bool isButton1Hovering = CheckCollisionPointRec(GetMousePosition(), button1Rect);
 
     // Draw button 1 with normal or hover texture based on mouse hover
     if (isButton1Hovering) {
-        DrawTexture(button1Hover, 700, 620, WHITE);
+        DrawTexture(button1Hover, 800, 620, WHITE);
     }
     else {
-        DrawTexture(button1, 700, 620, WHITE);
+        DrawTexture(button1, 800, 620, WHITE);
     }
 
     // Check if mouse is hovering over button 2
@@ -81,10 +81,10 @@ void displayButtons(Texture2D button1, Texture2D button1Hover, Texture2D button2
 
     // Draw button 2 with normal or hover texture based on mouse hover
     if (isButton2Hovering) {
-        DrawTexture(button2Hover, 700, 720, WHITE);
+        DrawTexture(button2Hover, 800, 720, WHITE);
     }
     else {
-        DrawTexture(button2, 700, 720, WHITE);
+        DrawTexture(button2, 800, 720, WHITE);
     }
 
     // Check if mouse is hovering over button 3
@@ -92,10 +92,10 @@ void displayButtons(Texture2D button1, Texture2D button1Hover, Texture2D button2
 
     // Draw button 3 with normal or hover texture based on mouse hover
     if (isButton3Hovering) {
-        DrawTexture(button3Hover, 700, 820, WHITE);
+        DrawTexture(button3Hover, 800, 820, WHITE);
     }
     else {
-        DrawTexture(button3, 700, 820, WHITE);
+        DrawTexture(button3, 800, 820, WHITE);
     }
 }
 
@@ -107,11 +107,6 @@ void displayMenu(Texture2D menu, Texture2D button1, Texture2D button1Hover, Text
     // Visualise buttons
     displayButtons(button1, button1Hover, button2, button2Hover, button3, button3Hover);
 }
-
-void displayCalculate(Texture2D CalcBackground) {
-    DrawTextureEx(CalcBackground, { 0, 0 }, 0, 1, WHITE);
-}
-
 
 void startApp() {
     //Initializing screen resolution
@@ -135,7 +130,7 @@ void startApp() {
     Vector2 mousePosition = { -100, -100 };
     Vector2 menuButtonPosition = { 0, 0 };
 
-    Rectangle buttonQuitCollision = { 700, 820, 375, 105 };
+    Rectangle buttonQuitCollision = { 800, 820, 375, 105 };
     Rectangle buttonFrames = { 0, 0, (float)(button1.width), (float)button1.height };
     // Checks if the players has clicked "Calcualte"
     bool Calculate = false;
@@ -154,11 +149,15 @@ void startApp() {
 
         if (buttonCalculateClicked(menuButtonPosition, mousePosition) == 0 && Calculate == false)
         {
+
             displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
         }
         else {
+
             displayCalculate(CalcBackground);
+            displayElements(metals, nonmetals);
             Calculate = true;
+            DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
 
 
             buttonQuitCollision = { -100, -100, 0, 0 };
