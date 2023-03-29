@@ -1,14 +1,11 @@
 #include "menu.h"
 
 //Checks if the left mouse button is clicked
-bool checkMouseButton()
-{
-    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
-    {
+bool checkMouseButton(){
+    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
         return 1;
     }
-    else
-    {
+    else{
         return 0;
     }
 }
@@ -61,29 +58,61 @@ bool buttonQuitClicked(Vector2 buttonPosition, Vector2 mousePosition, Rectangle 
 }
 
 // Visualise app menu buttons
-void displayButtons(Texture2D button1, Texture2D button2, Texture2D button3)
+void displayButtons(Texture2D button1, Texture2D button1Hover, Texture2D button2, Texture2D button2Hover, Texture2D button3, Texture2D button3Hover)
 {
-    Rectangle buttonFrame1 = { 0, 0, (float)(button1.width), (float)button1.height };
-    Rectangle buttonFrame2 = { 0, 0, (float)(button2.width), (float)button2.height };
-    Rectangle buttonFrame3 = { 0, 0, (float)(button3.width), (float)button3.height };
+    // Define rectangles for each button
+    Rectangle button1Rect = { 700, 620, button1.width, button1.height };
+    Rectangle button2Rect = { 700, 720, button2.width, button2.height };
+    Rectangle button3Rect = { 700, 820, button3.width, button3.height };
 
-    DrawTextureRec(button1, buttonFrame1, { 700, 620 }, WHITE);
-    DrawTextureRec(button2, buttonFrame2, { 700, 720 }, WHITE);
-    DrawTextureRec(button3, buttonFrame3, { 700, 820 }, WHITE);
+    // Check if mouse is hovering over button 1
+    bool isButton1Hovering = CheckCollisionPointRec(GetMousePosition(), button1Rect);
+
+    // Draw button 1 with normal or hover texture based on mouse hover
+    if (isButton1Hovering) {
+        DrawTexture(button1Hover, 700, 620, WHITE);
+    }
+    else {
+        DrawTexture(button1, 700, 620, WHITE);
+    }
+
+    // Check if mouse is hovering over button 2
+    bool isButton2Hovering = CheckCollisionPointRec(GetMousePosition(), button2Rect);
+
+    // Draw button 2 with normal or hover texture based on mouse hover
+    if (isButton2Hovering) {
+        DrawTexture(button2Hover, 700, 720, WHITE);
+    }
+    else {
+        DrawTexture(button2, 700, 720, WHITE);
+    }
+
+    // Check if mouse is hovering over button 3
+    bool isButton3Hovering = CheckCollisionPointRec(GetMousePosition(), button3Rect);
+
+    // Draw button 3 with normal or hover texture based on mouse hover
+    if (isButton3Hovering) {
+        DrawTexture(button3Hover, 700, 820, WHITE);
+    }
+    else {
+        DrawTexture(button3, 700, 820, WHITE);
+    }
 }
 
-void displayMenu(Texture2D menu, Texture2D button1, Texture2D button2, Texture2D button3)
+
+void displayMenu(Texture2D menu, Texture2D button1, Texture2D button1Hover, Texture2D button2, Texture2D button2Hover, Texture2D button3, Texture2D button3Hover)
 {
     // Visualise menu background
     DrawTextureEx(menu, { 0, 0 }, 0, 1, WHITE);
 
     // Visualise buttons
-    displayButtons(button1, button2, button3);
+    displayButtons(button1, button1Hover, button2, button2Hover, button3, button3Hover);
 }
 
 void displayCalculate(Texture2D CalcBackground) {
     DrawTextureEx(CalcBackground, { 0, 0 }, 0, 1, WHITE);
 }
+
 
 void startApp() {
     //Initializing screen resolution
@@ -95,6 +124,10 @@ void startApp() {
     Texture2D button1 = LoadTexture("./textures/mainMenuButton1.png");
     Texture2D button2 = LoadTexture("./textures/mainMenuButton2.png");
     Texture2D button3 = LoadTexture("./textures/mainMenuButton3.png");
+
+    Texture2D button1Hover = LoadTexture("./textures/mainMenuButton1Hover.png");
+    Texture2D button2Hover = LoadTexture("./textures/mainMenuButton2Hover.png");
+    Texture2D button3Hover = LoadTexture("./textures/mainMenuButton3Hover.png");
     Texture2D CalcBackground = LoadTexture("./textures/calculatorBackground.png");
 
     Vector2 mousePosition = { -100, -100 };
@@ -104,7 +137,8 @@ void startApp() {
     Rectangle buttonFrames = { 0, 0, (float)(button1.width), (float)button1.height };
     // Checks if the players has clicked "Calcualte"
     bool Calculate = false;
-
+    bool isButtonHovering = false;
+    isButtonHovering = CheckCollisionPointRec(mousePosition, buttonFrames);
 
     while (!WindowShouldClose())
     {
@@ -118,7 +152,7 @@ void startApp() {
 
         if (buttonCalculateClicked(menuButtonPosition, mousePosition) == 0 && Calculate == false)
         {
-            displayMenu(mainMenu, button1, button2, button3);
+            displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
         }
         else {
             displayCalculate(CalcBackground);
@@ -140,6 +174,9 @@ void startApp() {
     UnloadTexture(button1);
     UnloadTexture(button2);
     UnloadTexture(button3);
+    UnloadTexture(button1Hover);
+    UnloadTexture(button2Hover);
+    UnloadTexture(button3Hover);
     UnloadTexture(CalcBackground);
 
     CloseWindow();
