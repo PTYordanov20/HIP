@@ -122,6 +122,8 @@ void startApp() {
     Texture2D button1Hover = LoadTexture("./textures/mainMenuButton1Hover.png");
     Texture2D button2Hover = LoadTexture("./textures/mainMenuButton2Hover.png");
     Texture2D button3Hover = LoadTexture("./textures/mainMenuButton3Hover.png");
+    Texture2D metalsButtonsHover = LoadTexture("./textures/ElementsMetalsHovers.png");
+    Texture2D nonmetalsButtonsHover = LoadTexture("./textures/ElementsNonmetalsHovers.png");
     Texture2D CalcBackground = LoadTexture("./textures/calculatorBackground.png");
 
     Texture2D metals = LoadTexture("./textures/ElementsMetals.png");
@@ -155,7 +157,7 @@ void startApp() {
         else {
 
             displayCalculate(CalcBackground);
-            displayElements(metals, nonmetals);
+            displayElements(metals, nonmetals, metalsButtonsHover, nonmetalsButtonsHover);
             Calculate = true;
             DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
 
