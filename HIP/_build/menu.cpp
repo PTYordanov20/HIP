@@ -1,11 +1,11 @@
 #include "menu.h"
 
 //Checks if the left mouse button is clicked
-bool checkMouseButton(){
-    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
+bool checkMouseButton() {
+    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
         return 1;
     }
-    else{
+    else {
         return 0;
     }
 }
@@ -20,7 +20,7 @@ Vector2 chooseOption(Vector2 mousePosition)
 
     for (int i = 0; i < 3; i++)
     {
-        buttonCollision = { 800, coordinatesY[i], 375, 105 };
+        buttonCollision = { 800, coordinatesY[i], 375, 85 };
 
         //  Checks if the mouse position is on one of the buttons
         if (CheckCollisionPointRec(mousePosition, buttonCollision))
@@ -40,7 +40,7 @@ Vector2 chooseOption(Vector2 mousePosition)
 // Checks if the Calculate button is clicked
 bool buttonCalculateClicked(Vector2 buttonPosition, Vector2 mousePosition)
 {
-    Rectangle buttonPlay = { 800, 620, 375, 105 };
+    Rectangle buttonPlay = { 800, 620, 375, 85 };
 
     if (CheckCollisionPointRec(mousePosition, buttonPlay))
     {
@@ -61,9 +61,9 @@ bool buttonQuitClicked(Vector2 buttonPosition, Vector2 mousePosition, Rectangle 
 void displayButtons(Texture2D button1, Texture2D button1Hover, Texture2D button2, Texture2D button2Hover, Texture2D button3, Texture2D button3Hover)
 {
     // Define rectangles for each button
-    Rectangle button1Rect = { 800, 620, button1.width, button1.height };
-    Rectangle button2Rect = { 800, 720, button2.width, button2.height };
-    Rectangle button3Rect = { 800, 820, button3.width, button3.height };
+    Rectangle button1Rect = { 800, 620, button1.width, 85 };
+    Rectangle button2Rect = { 800, 720, button2.width, 85 };
+    Rectangle button3Rect = { 800, 820, button3.width, 85 };
 
     // Check if mouse is hovering over button 1
     bool isButton1Hovering = CheckCollisionPointRec(GetMousePosition(), button1Rect);
@@ -129,6 +129,9 @@ void startApp() {
     Texture2D metals = LoadTexture("./textures/ElementsMetals.png");
     Texture2D nonmetals = LoadTexture("./textures/ElementsNonmetals.png");
 
+    Texture2D calculatorButtons = LoadTexture("./textures/calculatorButtons.png");
+    Texture2D calculatorButtonsHover = LoadTexture("./textures/calculatorButtonsHover.png");
+
     Vector2 mousePosition = { -100, -100 };
     Vector2 menuButtonPosition = { 0, 0 };
 
@@ -154,13 +157,13 @@ void startApp() {
 
         if (buttonCalculateClicked(menuButtonPosition, mousePosition) == 0 && Calculate == false)
         {
-
             displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
         }
         else {
 
             displayCalculate(CalcBackground);
             displayElements(metals, nonmetals, metalsButtonsHover, nonmetalsButtonsHover);
+            displayCalculatorButtons(calculatorButtons, calculatorButtonsHover);
             Calculate = true;
             DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
 
@@ -173,9 +176,10 @@ void startApp() {
 
                 //buttonGuideCollision = { 800, 720, 1175, 806};
 
-                buttonQuitCollision = { 800, 820, 1175, 906};
+                buttonQuitCollision = { 800, 820, 1175, 906 };
             }
         }
+        DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
 
         if (buttonQuitClicked(menuButtonPosition, mousePosition, buttonQuitCollision) == 1)
         {

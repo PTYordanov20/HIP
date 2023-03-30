@@ -68,4 +68,37 @@ void displayElements(Texture2D metals, Texture2D nonmetals, Texture2D metalsButt
 	
 }
 
+void displayCalculatorButtons(Texture2D calculatorButtons, Texture2D calculatorButtonsHover) {
+	
+	for (int i = 1; i <= 10; i++)
+	{
+		float specialWidth = 0;
+		Vector2 coordinates = { 0, 0 };
+		switch (i) {
+		case 1:	specialWidth = (calculatorButtons.width / 10.1 + 1); coordinates = { 905, 389 }; break;
+		case 2:	specialWidth = (calculatorButtons.width / 10.1 + 1.1); coordinates = { 1023, 389 }; break;
+		case 3: specialWidth = (calculatorButtons.width / 10.1 + 0.9); coordinates = { 788, 469 }; break;
+		case 4: specialWidth = (calculatorButtons.width / 10.1 + 1); coordinates = { 905, 469 }; break;
+		case 5: specialWidth = (calculatorButtons.width / 10.1 + 1); coordinates = { 1024, 469 }; break;
+		case 6: specialWidth = (calculatorButtons.width / 10.1 + 1); coordinates = { 788, 549 }; break;
+		case 7: specialWidth = (calculatorButtons.width / 10.1 + 1); coordinates = { 905, 549 }; break;
+		case 8: specialWidth = (calculatorButtons.width / 10.1 + 1); coordinates = { 1024, 549 }; break;
+		case 9: specialWidth = (calculatorButtons.width / 10.1 + 1); coordinates = { 906, 629 }; break;
+		case 10: specialWidth = (calculatorButtons.width / 10.1 + 0.9); coordinates = { 788, 389 }; break;
+		default: break;
+		}
+		Rectangle elementFrame = { i * specialWidth, 0, (float)(calculatorButtons.width / 10.1), (float)(calculatorButtons.height) };
+		float x = coordinates.x;
+		float y = coordinates.y;
+		Rectangle elementButton1 = { x, y, 89, 59 };
+		bool isHovering = CheckCollisionPointRec(GetMousePosition(), elementButton1);
+		if (isHovering) {
+			DrawTextureRec(calculatorButtonsHover, elementFrame, { x, y }, WHITE);
+		}
+		else {
+			DrawTextureRec(calculatorButtons, elementFrame, { x, y }, WHITE);
+		}
 
+	}
+
+}
