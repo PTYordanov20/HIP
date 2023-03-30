@@ -1,7 +1,4 @@
 #pragma once
+#include "main.h"
 
-#include "raylib.h"
-#include "calculator.h"
-
-using namespace std;
 void startApp();

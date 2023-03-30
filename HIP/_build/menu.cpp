@@ -139,7 +139,10 @@ void startApp() {
     bool isButtonHovering = false;
     isButtonHovering = CheckCollisionPointRec(mousePosition, buttonFrames);
 
-    while (!WindowShouldClose())
+    //Checks if quit button was clicked
+    bool wasQuitClicked = false;
+
+    while (!WindowShouldClose() && wasQuitClicked == false)
     {
         // Tracks mouse cursor position
         mousePosition = GetMousePosition();
@@ -161,14 +164,22 @@ void startApp() {
             Calculate = true;
             DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
 
-
             buttonQuitCollision = { -100, -100, 0, 0 };
-        }
 
+            if (IsKeyPressed(KEY_K)) {
+                Calculate = false;
+
+                displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
+
+                //buttonGuideCollision = { 800, 720, 1175, 806};
+
+                buttonQuitCollision = { 800, 820, 1175, 906};
+            }
+        }
 
         if (buttonQuitClicked(menuButtonPosition, mousePosition, buttonQuitCollision) == 1)
         {
-            break;
+            wasQuitClicked = true;
         }
 
         EndDrawing();
