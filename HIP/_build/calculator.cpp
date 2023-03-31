@@ -1,4 +1,4 @@
-#include "calculator.h"
+#include "main.h"
 
 void displayCalculate(Texture2D CalcBackground) {
 	DrawTextureEx(CalcBackground, { 0, 0 }, 0, 1, WHITE);
@@ -92,6 +92,7 @@ void displayCalculatorButtons(Texture2D calculatorButtons, Texture2D calculatorB
 		float y = coordinates.y;
 		Rectangle elementButton1 = { x, y, 89, 59 };
 		bool isHovering = CheckCollisionPointRec(GetMousePosition(), elementButton1);
+
 		if (isHovering) {
 			DrawTextureRec(calculatorButtonsHover, elementFrame, { x, y }, WHITE);
 		}
@@ -100,5 +101,43 @@ void displayCalculatorButtons(Texture2D calculatorButtons, Texture2D calculatorB
 		}
 
 	}
+}
 
+void displayTextBox(char text[26], int& cursorPosition, bool& textboxSelected) {
+	const int maxChars = 26;
+	int TEXTBOX_WIDTH = 1100;
+	int TEXTBOX_HEIGHT = 75;
+
+	Rectangle textBox = {400, 175, TEXTBOX_WIDTH, TEXTBOX_HEIGHT};
+
+	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+		if (CheckCollisionPointRec(GetMousePosition(), textBox)) {
+			textboxSelected = true;
+		}
+		else {
+			textboxSelected = false;
+		}
+	}
+
+	if (textboxSelected) {
+		int key = GetKeyPressed();
+
+		if ((key >= 32) && (key <= 125) && (cursorPosition < maxChars)) {
+			text[cursorPosition] = (char)key;
+			cursorPosition++;
+		}
+		else if ((key == KEY_BACKSPACE) && (cursorPosition > 0)) {
+			cursorPosition--;
+			text[cursorPosition] = '\0';
+		}
+	}
+
+	DrawRectangle(400, 175, TEXTBOX_WIDTH, TEXTBOX_HEIGHT, BLACK);
+	DrawRectangle(403, 178, TEXTBOX_WIDTH - 6, TEXTBOX_HEIGHT - 6, LIGHTGRAY);
+	DrawText(text, 410, 183, 60, BLACK);
+
+	if (textboxSelected)
+	{
+		DrawLine(408, 180, 408, 180 + TEXTBOX_HEIGHT - 12, BLACK);
+	}
 }

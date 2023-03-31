@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "main.h"
 
 //Checks if the left mouse button is clicked
 bool checkMouseButton() {
@@ -145,6 +145,15 @@ void startApp() {
     //Checks if quit button was clicked
     bool wasQuitClicked = false;
 
+    //Text box variables
+    const int maxChars = 26;
+    int TEXTBOX_WIDTH = 1100;
+    int TEXTBOX_HEIGHT = 75;
+
+    char text[maxChars + 1] = { 0 };
+    int cursorPosition = 0;
+    bool textboxSelected = false;
+
     while (!WindowShouldClose() && wasQuitClicked == false)
     {
         // Tracks mouse cursor position
@@ -168,6 +177,9 @@ void startApp() {
             DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
 
             buttonQuitCollision = { -100, -100, 0, 0 };
+
+            //Displays the text box
+            displayTextBox(text, cursorPosition, textboxSelected);
 
             if (IsKeyPressed(KEY_K)) {
                 Calculate = false;

@@ -2,3 +2,5 @@
 #include "main.h"
 
 void startApp();
+
+bool checkMouseButton();
