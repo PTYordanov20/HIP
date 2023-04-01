@@ -5,21 +5,22 @@ void displayCalculate(Texture2D CalcBackground) {
 }
 
 void displayElements(Texture2D metals, Texture2D nonmetals, Texture2D metalsButtonsHover, Texture2D nonmetalsButtonsHover) {
+	string metalElementSign = "";
 
 	for (int i = 1; i <= 9; i++)
 	{
 		float specialWidth = 0;
 		Vector2 coordinates = { 0, 0 };
 		switch (i) {
-			case 1:	specialWidth = (metals.width / 9.1); coordinates = { 79, 439 }; break;
-			case 2:	specialWidth = (metals.width / 9.1); coordinates = { 215, 439 }; break;
-			case 3: specialWidth = (metals.width / 9.1); coordinates = { 79, 584 }; break;
-			case 4: specialWidth = (metals.width / 9 - 0.1); coordinates = { 215.5, 584 }; break;
-			case 5: specialWidth = (metals.width / 9); coordinates = { 353, 584 }; break;
-			case 6: specialWidth = (metals.width / 9.1 + 1); coordinates = { 491, 584 }; break;
-			case 7: specialWidth = (metals.width / 9.1 + 1.2); coordinates = { 354, 743 }; break;
-			case 8: specialWidth = (metals.width / 9.1 + 1.3); coordinates = { 490, 743 }; break;
-			case 9: specialWidth = (metals.width / 9.1 + 1.1); coordinates = { 629, 742 }; break;
+		case 1:	specialWidth = (metals.width / 9.1); coordinates = { 79, 439 }; metalElementSign = "Mg"; break;
+			case 2:	specialWidth = (metals.width / 9.1); coordinates = { 215, 439 }; metalElementSign = "Na"; break;
+			case 3: specialWidth = (metals.width / 9.1); coordinates = { 79, 584 }; metalElementSign = "Ca"; break;
+			case 4: specialWidth = (metals.width / 9 - 0.1); coordinates = { 215.5, 584 }; metalElementSign = "K"; break;
+			case 5: specialWidth = (metals.width / 9); coordinates = { 353, 584 }; metalElementSign = "Fe"; break;
+			case 6: specialWidth = (metals.width / 9.1 + 1); coordinates = { 491, 584 }; metalElementSign = "Cu"; break;
+			case 7: specialWidth = (metals.width / 9.1 + 1.2); coordinates = { 354, 743 }; metalElementSign = "Ag"; break;
+			case 8: specialWidth = (metals.width / 9.1 + 1.3); coordinates = { 490, 743 }; metalElementSign = "Au"; break;
+			case 9: specialWidth = (metals.width / 9.1 + 1.1); coordinates = { 629, 742 }; metalElementSign = "Al"; break;
 			default: break;
 		}
 		Rectangle elementFrame = { i * specialWidth, 0, (float)(metals.width / 9.1), (float)(metals.height) };
@@ -35,21 +36,21 @@ void displayElements(Texture2D metals, Texture2D nonmetals, Texture2D metalsButt
 		}
 
 	}
-
+	string nonmetalElementSign = "";
 	for (int i = 1; i <= 9; i++)
 	{
 		float specialWidth = 0;
 		Vector2 coordinates = { 0, 0 };
 		switch (i) {
-		case 1:	specialWidth = (nonmetals.width / 9.1 + 0.1); coordinates = { 1719, 438 }; break;
-		case 2:	specialWidth = (nonmetals.width / 9.1 + 0.1); coordinates = { 1582, 438 }; break;
-		case 3: specialWidth = (nonmetals.width / 9.1 + 1); coordinates = { 1718, 583 }; break;
-		case 4: specialWidth = (metals.width / 9 - 0.1); coordinates = { 1582, 583 }; break;
-		case 5: specialWidth = (nonmetals.width / 9 + 1); coordinates = { 1444, 583 }; break;
-		case 6: specialWidth = (nonmetals.width / 9.1 + 1.3); coordinates = { 1308, 584 }; break;
-		case 7: specialWidth = (nonmetals.width / 9.1 + 1.3); coordinates = { 1445, 743 }; break;
-		case 8: specialWidth = (nonmetals.width / 9.1 + 1.2); coordinates = { 1308, 743 }; break;
-		case 9: specialWidth = (nonmetals.width / 9.1 + 1.1); coordinates = { 1172, 742 }; break;
+		case 1:	specialWidth = (nonmetals.width / 9.1 + 0.1); coordinates = { 1719, 438 }; nonmetalElementSign = "H2"; break;
+		case 2:	specialWidth = (nonmetals.width / 9.1 + 0.1); coordinates = { 1582, 438 }; nonmetalElementSign = "N2"; break;
+		case 3: specialWidth = (nonmetals.width / 9.1 + 1); coordinates = { 1718, 583 }; nonmetalElementSign = "O2"; break;
+		case 4: specialWidth = (metals.width / 9 - 0.1); coordinates = { 1582, 583 }; nonmetalElementSign = "S"; break;
+		case 5: specialWidth = (nonmetals.width / 9 + 1); coordinates = { 1444, 583 }; nonmetalElementSign = "Cl2"; break;
+		case 6: specialWidth = (nonmetals.width / 9.1 + 1.3); coordinates = { 1308, 584 }; nonmetalElementSign = "P"; break;
+		case 7: specialWidth = (nonmetals.width / 9.1 + 1.3); coordinates = { 1445, 743 }; nonmetalElementSign = "Br2"; break;
+		case 8: specialWidth = (nonmetals.width / 9.1 + 1.2); coordinates = { 1308, 743 }; nonmetalElementSign = "I2"; break;
+		case 9: specialWidth = (nonmetals.width / 9.1 + 1.1); coordinates = { 1172, 742 }; nonmetalElementSign = "C"; break;
 		default: break;
 		}
 		Rectangle elementFrame = { i * specialWidth, 0, (float)(metals.width / 9.1), (float)(metals.height) };
@@ -103,41 +104,45 @@ void displayCalculatorButtons(Texture2D calculatorButtons, Texture2D calculatorB
 	}
 }
 
-void displayTextBox(char text[26], int& cursorPosition, bool& textboxSelected) {
-	const int maxChars = 26;
-	int TEXTBOX_WIDTH = 1100;
-	int TEXTBOX_HEIGHT = 75;
-
-	Rectangle textBox = {400, 175, TEXTBOX_WIDTH, TEXTBOX_HEIGHT};
-
-	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-		if (CheckCollisionPointRec(GetMousePosition(), textBox)) {
-			textboxSelected = true;
-		}
-		else {
-			textboxSelected = false;
-		}
-	}
-
-	if (textboxSelected) {
-		int key = GetKeyPressed();
-
-		if ((key >= 32) && (key <= 125) && (cursorPosition < maxChars)) {
-			text[cursorPosition] = (char)key;
-			cursorPosition++;
-		}
-		else if ((key == KEY_BACKSPACE) && (cursorPosition > 0)) {
-			cursorPosition--;
-			text[cursorPosition] = '\0';
-		}
-	}
-
-	DrawRectangle(400, 175, TEXTBOX_WIDTH, TEXTBOX_HEIGHT, BLACK);
-	DrawRectangle(403, 178, TEXTBOX_WIDTH - 6, TEXTBOX_HEIGHT - 6, LIGHTGRAY);
-	DrawText(text, 410, 183, 60, BLACK);
-
-	if (textboxSelected)
-	{
-		DrawLine(408, 180, 408, 180 + TEXTBOX_HEIGHT - 12, BLACK);
-	}
-}
+//void isElementClicked() {
+//	string elementSign = "";
+//
+//}
+//void displayTextBox(string text[26], int& cursorPosition, bool& textboxSelected) {
+//	const int maxChars = 26;
+//	int TEXTBOX_WIDTH = 1100;
+//	int TEXTBOX_HEIGHT = 75;
+//
+//	Rectangle textBox = {400, 175, TEXTBOX_WIDTH, TEXTBOX_HEIGHT};
+//
+//	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+//		if (CheckCollisionPointRec(GetMousePosition(), textBox)) {
+//			textboxSelected = true;
+//		}
+//		else {
+//			textboxSelected = false;
+//		}
+//	}
+//
+//	if (textboxSelected) {
+//		string key = ;
+//
+//		if ((cursorPosition < maxChars)) {
+//			text[cursorPosition] = (char)key;
+//			cursorPosition++;
+//		}
+//		else if ((key == KEY_BACKSPACE) && (cursorPosition > 0)) {
+//			cursorPosition--;
+//			text[cursorPosition] = '\0';
+//		}
+//	}
+//
+//	DrawRectangle(400, 175, TEXTBOX_WIDTH, TEXTBOX_HEIGHT, BLACK);
+//	DrawRectangle(403, 178, TEXTBOX_WIDTH - 6, TEXTBOX_HEIGHT - 6, LIGHTGRAY);
+//	DrawText(text, 410, 183, 60, BLACK);
+//
+//	if (textboxSelected)
+//	{
+//		DrawLine(408, 180, 408, 180 + TEXTBOX_HEIGHT - 12, BLACK);
+//	}
+//}

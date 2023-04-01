@@ -40,9 +40,19 @@ Vector2 chooseOption(Vector2 mousePosition)
 // Checks if the Calculate button is clicked
 bool buttonCalculateClicked(Vector2 buttonPosition, Vector2 mousePosition)
 {
-    Rectangle buttonPlay = { 800, 620, 375, 85 };
+    Rectangle buttonCalculate = { 800, 620, 375, 85 };
 
-    if (CheckCollisionPointRec(mousePosition, buttonPlay))
+    if (CheckCollisionPointRec(mousePosition, buttonCalculate))
+    {
+        return checkMouseButton();
+    }
+}
+
+bool buttonGuideClicked(Vector2 buttonPosition, Vector2 mousePosition)
+{
+    Rectangle buttonGuide = { 800, 720, 375, 85 };
+
+    if (CheckCollisionPointRec(mousePosition, buttonGuide))
     {
         return checkMouseButton();
     }
@@ -108,6 +118,12 @@ void displayMenu(Texture2D menu, Texture2D button1, Texture2D button1Hover, Text
     displayButtons(button1, button1Hover, button2, button2Hover, button3, button3Hover);
 }
 
+void displayGuide(Texture2D guide)
+{
+    // Visualise menu background
+    DrawTextureEx(guide, { 0, 0 }, 0, 1, WHITE);
+}
+
 void startApp() {
     //Initializing screen resolution
     InitWindow(1920, 1080, "Chemistry Calculator");
@@ -125,6 +141,7 @@ void startApp() {
     Texture2D metalsButtonsHover = LoadTexture("./textures/ElementsMetalsHovers.png");
     Texture2D nonmetalsButtonsHover = LoadTexture("./textures/ElementsNonmetalsHovers.png");
     Texture2D CalcBackground = LoadTexture("./textures/calculatorBackground.png");
+    Texture2D guide = LoadTexture("./textures/Guide.png");
 
     Texture2D metals = LoadTexture("./textures/ElementsMetals.png");
     Texture2D nonmetals = LoadTexture("./textures/ElementsNonmetals.png");
@@ -134,13 +151,19 @@ void startApp() {
 
     Vector2 mousePosition = { -100, -100 };
     Vector2 menuButtonPosition = { 0, 0 };
+    Vector2 guideButtonPosition = { 0, 0 };
 
-    Rectangle buttonQuitCollision = { 800, 820, 375, 105 };
+
+    Rectangle buttonQuitCollision = { 800, 820, 375, 85 };
+
+
     Rectangle buttonFrames = { 0, 0, (float)(button1.width), (float)button1.height };
     // Checks if the players has clicked "Calcualte"
     bool Calculate = false;
+    bool Guide = false;
     bool isButtonHovering = false;
     isButtonHovering = CheckCollisionPointRec(mousePosition, buttonFrames);
+    bool oneButtonClicked = true;
 
     //Checks if quit button was clicked
     bool wasQuitClicked = false;
@@ -150,7 +173,7 @@ void startApp() {
     int TEXTBOX_WIDTH = 1100;
     int TEXTBOX_HEIGHT = 75;
 
-    char text[maxChars + 1] = { 0 };
+    string text[26];
     int cursorPosition = 0;
     bool textboxSelected = false;
 
@@ -159,36 +182,56 @@ void startApp() {
         // Tracks mouse cursor position
         mousePosition = GetMousePosition();
         menuButtonPosition = chooseOption(mousePosition);
+        guideButtonPosition = chooseOption(mousePosition);
 
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
 
-        if (buttonCalculateClicked(menuButtonPosition, mousePosition) == 0 && Calculate == false)
-        {
+        if (buttonGuideClicked(guideButtonPosition, mousePosition) == 0 && Guide == false) {
             displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
         }
         else {
-
-            displayCalculate(CalcBackground);
-            displayElements(metals, nonmetals, metalsButtonsHover, nonmetalsButtonsHover);
-            displayCalculatorButtons(calculatorButtons, calculatorButtonsHover);
-            Calculate = true;
-            DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
-
+            displayGuide(guide);
+            Guide = true;
             buttonQuitCollision = { -100, -100, 0, 0 };
-
-            //Displays the text box
-            displayTextBox(text, cursorPosition, textboxSelected);
-
+            oneButtonClicked = false;
             if (IsKeyPressed(KEY_K)) {
-                Calculate = false;
+                Guide = false;
 
                 displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
+                oneButtonClicked = true;
+                buttonQuitCollision = { 800, 820, 375, 85 };
+            }
+        }
 
-                //buttonGuideCollision = { 800, 720, 1175, 806};
+        if (oneButtonClicked) {
+            if (buttonCalculateClicked(menuButtonPosition, mousePosition) == 0 && Calculate == false)
+            {
+                displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
+            }
+            else {
 
-                buttonQuitCollision = { 800, 820, 1175, 906 };
+                displayCalculate(CalcBackground);
+                displayElements(metals, nonmetals, metalsButtonsHover, nonmetalsButtonsHover);
+                displayCalculatorButtons(calculatorButtons, calculatorButtonsHover);
+                Calculate = true;
+                DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
+                Guide = false;
+                buttonQuitCollision = { -100, -100, 0, 0 };
+
+                //Displays the text box
+                //displayTextBox(text, cursorPosition, textboxSelected);
+
+                if (IsKeyPressed(KEY_K)) {
+                    Calculate = false;
+
+                    displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
+
+                    oneButtonClicked = true;
+
+                    buttonQuitCollision = { 800, 820, 375, 85 };
+                }
             }
         }
         DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
@@ -210,6 +253,14 @@ void startApp() {
     UnloadTexture(button2Hover);
     UnloadTexture(button3Hover);
     UnloadTexture(CalcBackground);
+    UnloadTexture(metalsButtonsHover);
+    UnloadTexture(nonmetalsButtonsHover);
+    UnloadTexture(guide);
+    UnloadTexture(metals);
+    UnloadTexture(nonmetals);
+    UnloadTexture(calculatorButtons);
+    UnloadTexture(calculatorButtonsHover);
+
 
     CloseWindow();
 }
