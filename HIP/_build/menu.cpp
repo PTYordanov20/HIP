@@ -153,11 +153,10 @@ void startApp() {
     Vector2 menuButtonPosition = { 0, 0 };
     Vector2 guideButtonPosition = { 0, 0 };
 
-
     Rectangle buttonQuitCollision = { 800, 820, 375, 85 };
 
-
     Rectangle buttonFrames = { 0, 0, (float)(button1.width), (float)button1.height };
+
     // Checks if the players has clicked "Calcualte"
     bool Calculate = false;
     bool Guide = false;
@@ -167,14 +166,6 @@ void startApp() {
 
     //Checks if quit button was clicked
     bool wasQuitClicked = false;
-
-    //Text box variables
-    const int maxChars = 26;
-    int TEXTBOX_WIDTH = 1100;
-    int TEXTBOX_HEIGHT = 75;
-
-    int cursorPosition = 0;
-    bool textboxSelected = false;
 
     while (!WindowShouldClose() && wasQuitClicked == false)
     {
@@ -191,15 +182,19 @@ void startApp() {
             displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
         }
         else {
-            displayGuide(guide);
             Guide = true;
-            buttonQuitCollision = { -100, -100, 0, 0 };
             oneButtonClicked = false;
+
+            displayGuide(guide);
+
+            buttonQuitCollision = { -100, -100, 0, 0 };
+
             if (IsKeyPressed(KEY_K)) {
                 Guide = false;
+                oneButtonClicked = true;
 
                 displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
-                oneButtonClicked = true;
+
                 buttonQuitCollision = { 800, 820, 375, 85 };
             }
         }
@@ -211,28 +206,32 @@ void startApp() {
             }
             else {
 
-                displayCalculate(CalcBackground);
-                displayElements(metals, nonmetals, metalsButtonsHover, nonmetalsButtonsHover);
-                displayCalculatorButtons(calculatorButtons, calculatorButtonsHover);
                 Calculate = true;
-                DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
                 Guide = false;
-                buttonQuitCollision = { -100, -100, 0, 0 };
 
-                //Displays the text box
-                displayTextBox(cursorPosition, textboxSelected);
+                DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
+
+                displayCalculate(CalcBackground);
+
+                displayElements(metals, nonmetals, metalsButtonsHover, nonmetalsButtonsHover);
+
+                displayCalculatorButtons(calculatorButtons, calculatorButtonsHover);
+
+                displayTextBox();
+
+                buttonQuitCollision = { -100, -100, 0, 0 };
 
                 if (IsKeyPressed(KEY_K)) {
                     Calculate = false;
+                    oneButtonClicked = true;
 
                     displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
-
-                    oneButtonClicked = true;
 
                     buttonQuitCollision = { 800, 820, 375, 85 };
                 }
             }
         }
+
         DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
 
         if (buttonQuitClicked(menuButtonPosition, mousePosition, buttonQuitCollision) == 1)

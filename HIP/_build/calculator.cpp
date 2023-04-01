@@ -113,7 +113,7 @@ void addElement(Vector2 coordinates) {
 	}
 
 }
-void displayTextBox(int& cursorPosition, bool& textboxSelected) {
+void displayTextBox() {
 	DrawText(equationText, 400, 183, 70, BLACK);
 }
 

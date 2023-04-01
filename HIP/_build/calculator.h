@@ -9,6 +9,4 @@ void displayElements(Texture2D metals, Texture2D nonmetals, Texture2D metalsButt
 
 void displayCalculatorButtons(Texture2D calculatorButtons, Texture2D calculatorButtonsHover);
 
-//void displayNumbersOnBar(Texture2D calculatorButtons, Texture2D calculatorButtonsHover);
-
-void displayTextBox(int& cursorPosition, bool& textboxSelected);
+void displayTextBox();
