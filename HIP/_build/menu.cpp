@@ -173,7 +173,6 @@ void startApp() {
     int TEXTBOX_WIDTH = 1100;
     int TEXTBOX_HEIGHT = 75;
 
-    string text[26];
     int cursorPosition = 0;
     bool textboxSelected = false;
 
@@ -221,7 +220,7 @@ void startApp() {
                 buttonQuitCollision = { -100, -100, 0, 0 };
 
                 //Displays the text box
-                //displayTextBox(text, cursorPosition, textboxSelected);
+                displayTextBox(cursorPosition, textboxSelected);
 
                 if (IsKeyPressed(KEY_K)) {
                     Calculate = false;
