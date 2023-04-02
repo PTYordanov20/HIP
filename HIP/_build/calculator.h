@@ -9,4 +9,6 @@ void displayElements(Texture2D metals, Texture2D nonmetals, Texture2D metalsButt
 
 void displayCalculatorButtons(Texture2D calculatorButtons, Texture2D calculatorButtonsHover);
 
+void displayEquationButtons(Texture2D equationButtons, Texture2D equationButtonsHover);
+
 void displayTextBox();

@@ -1,2 +1,15 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (obj\x64\Debug\RaylibTest\) contains files shared from another project (RaylibTest.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  RaylibTest.vcxproj -> C:\Users\user\source\repos\HIP\HIP\_bin\Debug\RaylibTest.exe
+  menu.cpp
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(74,48): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(74,48): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(75,48): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(75,48): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(76,48): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(76,48): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(193,98): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(241,94): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(39): warning C4715: 'chooseOption': not all control paths return a value
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(59): warning C4715: 'buttonGuideClicked': not all control paths return a value
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(49): warning C4715: 'buttonCalculateClicked': not all control paths return a value
+C:\Users\amidalus\source\repos\HIP\HIP\_build\menu.cpp(68): warning C4715: 'buttonQuitClicked': not all control paths return a value
+  RaylibTest.vcxproj -> C:\Users\amidalus\source\repos\HIP\HIP\_bin\Debug\RaylibTest.exe

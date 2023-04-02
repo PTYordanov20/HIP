@@ -146,6 +146,9 @@ void startApp() {
     Texture2D metals = LoadTexture("./textures/ElementsMetals.png");
     Texture2D nonmetals = LoadTexture("./textures/ElementsNonmetals.png");
 
+    Texture2D equationButtons = LoadTexture("./textures/equationButtons.png");
+    Texture2D equationButtonsHover = LoadTexture("./textures/equationButtonsHover.png");
+
     Texture2D calculatorButtons = LoadTexture("./textures/calculatorButtons.png");
     Texture2D calculatorButtonsHover = LoadTexture("./textures/calculatorButtonsHover.png");
 
@@ -178,19 +181,31 @@ void startApp() {
 
         ClearBackground(RAYWHITE);
 
-        if (buttonGuideClicked(guideButtonPosition, mousePosition) == 0 && Guide == false) {
+        if (buttonCalculateClicked(menuButtonPosition, mousePosition) == 0 && Calculate == false)
+        {
             displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
         }
         else {
-            Guide = true;
+
+            Calculate = true;
+            Guide = false;
+
+            DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
+
+            displayCalculate(CalcBackground);
+
+            displayElements(metals, nonmetals, metalsButtonsHover, nonmetalsButtonsHover);
+
+            displayCalculatorButtons(calculatorButtons, calculatorButtonsHover);
+
+            displayEquationButtons(equationButtons, equationButtonsHover);
+
+            displayTextBox();
             oneButtonClicked = false;
-
-            displayGuide(guide);
-
             buttonQuitCollision = { -100, -100, 0, 0 };
 
             if (IsKeyPressed(KEY_K)) {
-                Guide = false;
+                Calculate = false;
                 oneButtonClicked = true;
 
                 displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
@@ -200,29 +215,20 @@ void startApp() {
         }
 
         if (oneButtonClicked) {
-            if (buttonCalculateClicked(menuButtonPosition, mousePosition) == 0 && Calculate == false)
-            {
+            
+            if (buttonGuideClicked(guideButtonPosition, mousePosition) == 0 && Guide == false) {
                 displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
             }
             else {
+                Guide = true;
+                oneButtonClicked = true;
 
-                Calculate = true;
-                Guide = false;
-
-                DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
-
-                displayCalculate(CalcBackground);
-
-                displayElements(metals, nonmetals, metalsButtonsHover, nonmetalsButtonsHover);
-
-                displayCalculatorButtons(calculatorButtons, calculatorButtonsHover);
-
-                displayTextBox();
+                displayGuide(guide);
 
                 buttonQuitCollision = { -100, -100, 0, 0 };
 
                 if (IsKeyPressed(KEY_K)) {
-                    Calculate = false;
+                    Guide = false;
                     oneButtonClicked = true;
 
                     displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
