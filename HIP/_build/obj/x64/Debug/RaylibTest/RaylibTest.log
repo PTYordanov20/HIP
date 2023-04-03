@@ -1,2 +1,32 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (obj\x64\Debug\RaylibTest\) contains files shared from another project (RaylibTest.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  RaylibTest.vcxproj -> C:\Users\user\source\repos\HIP\HIP\_bin\Debug\RaylibTest.exe
+  calculator.cpp
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(253,32): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(253,32): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(275,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(276,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(277,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(278,45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(279,48): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(280,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(281,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(282,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(283,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(325,58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(326,58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(327,58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(328,58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(329,58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(330,58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(331,58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(332,58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(333,58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(334,59): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(335,59): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(336,59): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(360,32): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(360,32): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(361,32): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(361,32): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(362,32): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\amidalus\source\repos\HIP\HIP\_build\calculator.cpp(362,32): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  RaylibTest.vcxproj -> C:\Users\amidalus\source\repos\HIP\HIP\_bin\Debug\RaylibTest.exe

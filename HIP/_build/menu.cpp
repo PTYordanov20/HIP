@@ -9,7 +9,7 @@ bool checkMouseButton() {
         return 0;
     }
 }
-
+//Make the application fullscreen
 void fullscreenToggle() {
     if (IsKeyPressed(KEY_F11)) {
         ToggleFullscreen();
@@ -53,7 +53,7 @@ bool buttonCalculateClicked(Vector2 buttonPosition, Vector2 mousePosition)
         return checkMouseButton();
     }
 }
-
+// Checks if the Guide button is clicked
 bool buttonGuideClicked(Vector2 buttonPosition, Vector2 mousePosition)
 {
     Rectangle buttonGuide = { 800, 720, 375, 85 };
@@ -64,7 +64,7 @@ bool buttonGuideClicked(Vector2 buttonPosition, Vector2 mousePosition)
     }
 }
 
-// Closes game when "Quit" it's clicked
+// Closes application when "Quit" it's clicked
 bool buttonQuitClicked(Vector2 buttonPosition, Vector2 mousePosition, Rectangle buttonQuit)
 {
     if (CheckCollisionPointRec(mousePosition, buttonQuit))

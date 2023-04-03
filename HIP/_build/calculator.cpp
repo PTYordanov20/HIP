@@ -226,11 +226,12 @@ void addElement(Vector2 coordinates) {
 
 	}
 }
+//Displays the textbox on the screen
 void displayTextBox() {
 	DrawText(equationText.c_str(), 400, 183, 70, BLACK);
 	
 }
-
+//Displays metals and nonmetals
 void displayElements(Texture2D metals, Texture2D nonmetals, Texture2D metalsButtonsHover, Texture2D nonmetalsButtonsHover) {
 
 	for (int i = 1; i <= 9; i++)
@@ -313,7 +314,7 @@ void deleteEquation() {
 	element1 = -1;
 	element2 = -1;
 }
-
+//Displays all the calclator buttons
 void displayCalculatorButtons(Texture2D calculatorButtons, Texture2D calculatorButtonsHover) {
 
 	for (int i = 1; i <= 12; i++)
@@ -354,7 +355,7 @@ void displayCalculatorButtons(Texture2D calculatorButtons, Texture2D calculatorB
 
 	}
 }
-
+//Displays backspace, balance and plus buttons
 void displayEquationButtons(Texture2D equationButtons, Texture2D equationButtonsHover) {
 	Rectangle elementFrame1 = { 3 * (equationButtons.width / 3 + 0.9), 0, (float)(equationButtons.width / 3.1), (float)(equationButtons.height) };
 	Rectangle elementFrame2 = { 1 * (equationButtons.width / 3.1 + 4.8), 0, (float)(equationButtons.width / 3.1), (float)(equationButtons.height) };
