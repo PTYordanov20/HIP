@@ -3,6 +3,13 @@
 char equationText[25];
 int textIndex = 0;
 
+char equationCalculation[25];
+int equationCalculationIndex = 0;
+
+bool isArrowClicked = false;
+
+bool everything = true;
+
 void displayCalculate(Texture2D CalcBackground) {
 	DrawTextureEx(CalcBackground, { 0, 0 }, 0, 1, WHITE);
 }
@@ -10,122 +17,170 @@ void displayCalculate(Texture2D CalcBackground) {
 // add elements to the text box
 void addElement(Vector2 coordinates) {
 
-	if (textIndex >= 25) {
-		return;
-	}
+	if (everything == true && isArrowClicked == false) {
+		if (textIndex >= 25) {
+			return;
+		}
 
-	if (coordinates.x == 79 && coordinates.y == 439) {
-		equationText[textIndex++] = 'M';
-		equationText[textIndex++] = 'g';
-	}
-	else if (coordinates.x == 215 && coordinates.y == 439) {
-		equationText[textIndex++] = 'N';
-		equationText[textIndex++] = 'a';
-	}
-	else if (coordinates.x == 79 && coordinates.y == 584) {
-		equationText[textIndex++] = 'C';
-		equationText[textIndex++] = 'a';
-	}
-	else if (coordinates.x == 215.5 && coordinates.y == 584) {
-		equationText[textIndex++] = 'K';
-	}
-	else if (coordinates.x == 353 && coordinates.y == 584) {
-		equationText[textIndex++] = 'F';
-		equationText[textIndex++] = 'e';
-	}
-	else if (coordinates.x == 491 && coordinates.y == 584) {
-		equationText[textIndex++] = 'C';
-		equationText[textIndex++] = 'u';
-	}
-	else if (coordinates.x == 354 && coordinates.y == 743) {
-		equationText[textIndex++] = 'A';
-		equationText[textIndex++] = 'g';
-	}
-	else if (coordinates.x == 490 && coordinates.y == 743) {
-		equationText[textIndex++] = 'A';
-		equationText[textIndex++] = 'u';
-	}
-	else if (coordinates.x == 629 && coordinates.y == 742) {
-		equationText[textIndex++] = 'A';
-		equationText[textIndex++] = 'l';
-	}
-	else if (coordinates.x == 1718 && coordinates.y == 583) {
-		equationText[textIndex++] = 'O';
-	}
-	else if (coordinates.x == 1719 && coordinates.y == 438) {
-		equationText[textIndex++] = 'H';
-	}
-	else if (coordinates.x == 1582 && coordinates.y == 438) {
-		equationText[textIndex++] = 'N';
-	}
-	else if (coordinates.x == 1582 && coordinates.y == 583) {
-		equationText[textIndex++] = 'S';
-	}
-	else if (coordinates.x == 1444 && coordinates.y == 583) {
-		equationText[textIndex++] = 'C';
-		equationText[textIndex++] = 'l';
-	}
-	else if (coordinates.x == 1308 && coordinates.y == 584) {
-		equationText[textIndex++] = 'P';
-	}
-	else if (coordinates.x == 1445 && coordinates.y == 743) {
-		equationText[textIndex++] = 'B';
-		equationText[textIndex++] = 'r';
-	}
-	else if (coordinates.x == 1308 && coordinates.y == 743) {
-		equationText[textIndex++] = 'I';
-	}
-	else if (coordinates.x == 1172 && coordinates.y == 742) {
-		equationText[textIndex++] = 'C';
-	}
-	else if (coordinates.x == 906 && coordinates.y == 389) {
-		equationText[textIndex++] = '2';
-	}
-	else if (coordinates.x == 1024 && coordinates.y == 389) {
-		equationText[textIndex++] = '3';
-	}
-	else if (coordinates.x == 789 && coordinates.y == 469) {
-		equationText[textIndex++] = '4';
-	}
-	else if (coordinates.x == 906 && coordinates.y == 469) {
-		equationText[textIndex++] = '5';
-	}
-	else if (coordinates.x == 1025 && coordinates.y == 469) {
-		equationText[textIndex++] = '6';
-	}
-	else if (coordinates.x == 789 && coordinates.y == 549) {
-		equationText[textIndex++] = '7';
-	}
-	else if (coordinates.x == 906 && coordinates.y == 549) {
-		equationText[textIndex++] = '8';
-	}
-	else if (coordinates.x == 1025 && coordinates.y == 549) {
-		equationText[textIndex++] = '9';
-	}
-	else if (coordinates.x == 906 && coordinates.y == 629) {
-		equationText[textIndex++] = '0';
-	}
-	else if (coordinates.x == 789 && coordinates.y == 389) {
-		equationText[textIndex++] = '1';
-	}
-	else if (textIndex != 0 && equationText[textIndex-1] != '+' && equationText[textIndex - 1] != '>') {
-		if (coordinates.x == 789 && coordinates.y == 629) {
-			equationText[textIndex++] = '(';
-		}
-		else if (coordinates.x == 1024 && coordinates.y == 628) {
-			equationText[textIndex++] = ')';
-		}
-		else if (coordinates.x == 911 && coordinates.y == 703) {
-			equationText[textIndex++] = '+';
-		}
-		else if (coordinates.x == 909 && coordinates.y == 785) {
-			equationText[textIndex++] = '-';
-			equationText[textIndex++] = '>';
-		}
-	}
+		if (coordinates.x == 79 && coordinates.y == 439) {
+			equationText[textIndex++] = 'M';
+			equationText[textIndex++] = 'g';
 
-	if (coordinates.x == 1591 && coordinates.y == 164) {	
-		switch (equationText[textIndex - 1]) {
+			equationCalculation[equationCalculationIndex++] = 'M';
+			equationCalculation[equationCalculationIndex++] = 'g';
+		}
+		else if (coordinates.x == 215 && coordinates.y == 439) {
+			equationText[textIndex++] = 'N';
+			equationText[textIndex++] = 'a';
+
+			equationCalculation[equationCalculationIndex++] = 'N';
+			equationCalculation[equationCalculationIndex++] = 'a';
+		}
+		else if (coordinates.x == 79 && coordinates.y == 584) {
+			equationText[textIndex++] = 'C';
+			equationText[textIndex++] = 'a';
+
+			equationCalculation[equationCalculationIndex++] = 'C';
+			equationCalculation[equationCalculationIndex++] = 'a';
+		}
+		else if (coordinates.x == 215.5 && coordinates.y == 584) {
+			equationText[textIndex++] = 'K';
+
+			equationCalculation[equationCalculationIndex++] = 'K';
+		}
+		else if (coordinates.x == 353 && coordinates.y == 584) {
+			equationText[textIndex++] = 'F';
+			equationText[textIndex++] = 'e';
+
+			equationCalculation[equationCalculationIndex++] = 'F';
+			equationCalculation[equationCalculationIndex++] = 'e';
+		}
+		else if (coordinates.x == 491 && coordinates.y == 584) {
+			equationText[textIndex++] = 'C';
+			equationText[textIndex++] = 'u';
+
+			equationCalculation[equationCalculationIndex++] = 'C';
+			equationCalculation[equationCalculationIndex++] = 'u';
+		}
+		else if (coordinates.x == 354 && coordinates.y == 743) {
+			equationText[textIndex++] = 'A';
+			equationText[textIndex++] = 'g';
+
+			equationCalculation[equationCalculationIndex++] = 'A';
+			equationCalculation[equationCalculationIndex++] = 'g';
+		}
+		else if (coordinates.x == 490 && coordinates.y == 743) {
+			equationText[textIndex++] = 'A';
+			equationText[textIndex++] = 'u';
+
+			equationCalculation[equationCalculationIndex++] = 'A';
+			equationCalculation[equationCalculationIndex++] = 'u';
+		}
+		else if (coordinates.x == 629 && coordinates.y == 742) {
+			equationText[textIndex++] = 'A';
+			equationText[textIndex++] = 'l';
+
+			equationCalculation[equationCalculationIndex++] = 'A';
+			equationCalculation[equationCalculationIndex++] = 'l';
+		}
+		else if (coordinates.x == 1718 && coordinates.y == 583) {
+			equationText[textIndex++] = 'O';
+
+			equationCalculation[equationCalculationIndex++] = 'O';
+		}
+		else if (coordinates.x == 1719 && coordinates.y == 438) {
+			equationText[textIndex++] = 'H';
+
+			equationCalculation[equationCalculationIndex++] = 'H';
+		}
+		else if (coordinates.x == 1582 && coordinates.y == 438) {
+			equationText[textIndex++] = 'N';
+
+			equationCalculation[equationCalculationIndex++] = 'N';
+		}
+		else if (coordinates.x == 1582 && coordinates.y == 583) {
+			equationText[textIndex++] = 'S';
+
+			equationCalculation[equationCalculationIndex++] = 'S';
+		}
+		else if (coordinates.x == 1444 && coordinates.y == 583) {
+			equationText[textIndex++] = 'C';
+			equationText[textIndex++] = 'l';
+
+			equationCalculation[equationCalculationIndex++] = 'C';
+			equationCalculation[equationCalculationIndex++] = 'l';
+		}
+		else if (coordinates.x == 1308 && coordinates.y == 584) {
+			equationText[textIndex++] = 'P';
+
+			equationCalculation[equationCalculationIndex++] = 'P';
+		}
+		else if (coordinates.x == 1445 && coordinates.y == 743) {
+			equationText[textIndex++] = 'B';
+			equationText[textIndex++] = 'r';
+
+			equationCalculation[equationCalculationIndex++] = 'B';
+			equationCalculation[equationCalculationIndex++] = 'r';
+		}
+		else if (coordinates.x == 1308 && coordinates.y == 743) {
+			equationText[textIndex++] = 'I';
+
+			equationCalculation[equationCalculationIndex++] = 'I';
+		}
+		else if (coordinates.x == 1172 && coordinates.y == 742) {
+			equationText[textIndex++] = 'C';
+
+			equationCalculation[equationCalculationIndex++] = 'C';
+		}
+		else if (coordinates.x == 906 && coordinates.y == 389) {
+			equationText[textIndex++] = '2';
+		}
+		else if (coordinates.x == 1024 && coordinates.y == 389) {
+			equationText[textIndex++] = '3';
+		}
+		else if (coordinates.x == 789 && coordinates.y == 469) {
+			equationText[textIndex++] = '4';
+		}
+		else if (coordinates.x == 906 && coordinates.y == 469) {
+			equationText[textIndex++] = '5';
+		}
+		else if (coordinates.x == 1025 && coordinates.y == 469) {
+			equationText[textIndex++] = '6';
+		}
+		else if (coordinates.x == 789 && coordinates.y == 549) {
+			equationText[textIndex++] = '7';
+		}
+		else if (coordinates.x == 906 && coordinates.y == 549) {
+			equationText[textIndex++] = '8';
+		}
+		else if (coordinates.x == 1025 && coordinates.y == 549) {
+			equationText[textIndex++] = '9';
+		}
+		else if (coordinates.x == 906 && coordinates.y == 629) {
+			equationText[textIndex++] = '0';
+		}
+		else if (coordinates.x == 789 && coordinates.y == 389) {
+			equationText[textIndex++] = '1';
+		}
+		else if (textIndex != 0 && equationText[textIndex - 1] != '+' && equationText[textIndex - 1] != '>') {
+			if (coordinates.x == 789 && coordinates.y == 629) {
+				equationText[textIndex++] = '(';
+			}
+			else if (coordinates.x == 1024 && coordinates.y == 628) {
+				equationText[textIndex++] = ')';
+			}
+			else if (coordinates.x == 911 && coordinates.y == 703) {
+				equationText[textIndex++] = '+';
+			}
+			else if (coordinates.x == 909 && coordinates.y == 785) {
+				equationText[textIndex++] = '-';
+				equationText[textIndex++] = '>';
+				isArrowClicked = true;
+			}
+		}
+
+		if (coordinates.x == 1591 && coordinates.y == 164) {
+			switch (equationText[textIndex - 1]) {
 			case 'g':
 			case 'a':
 			case 'e':
@@ -135,10 +190,13 @@ void addElement(Vector2 coordinates) {
 			case '>':
 				if (textIndex - 2 >= 0) {
 					textIndex--;
+					equationCalculationIndex--;
 					for (int i = textIndex; i > textIndex - 2; i--) {
 						equationText[i] = '\0';
+						equationCalculation[i] = '\0';
 					}
 					textIndex--;
+					equationCalculationIndex--;
 				}
 				else {
 					textIndex = 0;
@@ -150,14 +208,27 @@ void addElement(Vector2 coordinates) {
 					textIndex = 0;
 				}
 				equationText[textIndex] = '\0';
+				equationCalculation[--equationCalculationIndex] = '\0';
 
 				break;
+			}
 		}
 	}
 	
 }
 void displayTextBox() {
 	DrawText(equationText, 400, 183, 70, BLACK);
+	int x = 400 + (equationCalculationIndex) * 70;
+	int y = 183;
+	Rectangle calculateArrow = {903, 803, 89, 59};
+	bool isHovering = CheckCollisionPointRec(GetMousePosition(), calculateArrow);
+	
+	if (isArrowClicked) {
+		for (int i = 0; i < equationCalculationIndex; i++) {
+			equationText[i + textIndex] = equationCalculation[i];
+		}
+		DrawText(equationText, 400, 183, 70, BLACK);
+	}
 }
 
 void displayElements(Texture2D metals, Texture2D nonmetals, Texture2D metalsButtonsHover, Texture2D nonmetalsButtonsHover) {
