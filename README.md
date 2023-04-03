@@ -58,6 +58,6 @@ git clone https://github.com/PTYordanov20/HIP.git
 ## 📋 Presentation and Documentation <a name="presentationAndDocumentation"></a>
 *You can view the presentation and documentations here:*
 
-- [Presentation]
-- [Documentation]
-- [QA Documentation]
+- [Presentation](https://github.com/PTYordanov20/HIP/tree/main/Documents)
+- [Documentation](https://github.com/PTYordanov20/HIP/tree/main/Documents)
+- [QA Documentation](https://github.com/PTYordanov20/HIP/tree/main/Documents)
