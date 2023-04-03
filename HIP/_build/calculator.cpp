@@ -357,11 +357,11 @@ void displayCalculatorButtons(Texture2D calculatorButtons, Texture2D calculatorB
 
 void displayEquationButtons(Texture2D equationButtons, Texture2D equationButtonsHover) {
 	Rectangle elementFrame1 = { 3 * (equationButtons.width / 3 + 0.9), 0, (float)(equationButtons.width / 3.1), (float)(equationButtons.height) };
-	Rectangle elementFrame2 = { 1 * (equationButtons.width / 3.1 + 4), 0, (float)(equationButtons.width / 3.1), (float)(equationButtons.height) };
-	Rectangle elementFrame3 = { 2 * (equationButtons.width / 3.1 + 3.8), 0, (float)(equationButtons.width / 3.1), (float)(equationButtons.height) };
-	Rectangle elementButton1 = { 910, 721, 89, 59 };
-	Rectangle elementButton2 = { 908, 803, 89, 59 };
-	Rectangle elementButton3 = { 1589, 182, 89, 59 };
+	Rectangle elementFrame2 = { 1 * (equationButtons.width / 3.1 + 4.8), 0, (float)(equationButtons.width / 3.1), (float)(equationButtons.height) };
+	Rectangle elementFrame3 = { 2 * (equationButtons.width / 3.1 + 3.4), 0, (float)(equationButtons.width / 3.1), (float)(equationButtons.height) };
+	Rectangle elementButton1 = { 910, 721, 80, 76 };
+	Rectangle elementButton2 = { 910, 805, 80, 76 };
+	Rectangle elementButton3 = { 1590, 182, 80, 100 };
 	bool isHovering = CheckCollisionPointRec(GetMousePosition(), elementButton1);
 	if (isHovering) {
 		DrawTextureRec(equationButtonsHover, elementFrame1, { 911, 703 }, WHITE);
@@ -375,23 +375,23 @@ void displayEquationButtons(Texture2D equationButtons, Texture2D equationButtons
 	isHovering = false;
 	isHovering = CheckCollisionPointRec(GetMousePosition(), elementButton2);
 	if (isHovering) {
-		DrawTextureRec(equationButtonsHover, elementFrame2, { 909, 785 }, WHITE);
+		DrawTextureRec(equationButtonsHover, elementFrame2, { 910, 785 }, WHITE);
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
 			addElement({ 909,785 });
 		}
 	}
 	else {
-		DrawTextureRec(equationButtons, elementFrame2, { 909, 785 }, WHITE);
+		DrawTextureRec(equationButtons, elementFrame2, { 910, 785 }, WHITE);
 	}
 	isHovering = false;
 	isHovering = CheckCollisionPointRec(GetMousePosition(), elementButton3);
 	if (isHovering) {
-		DrawTextureRec(equationButtonsHover, elementFrame3, { 1591, 164 }, WHITE);
+		DrawTextureRec(equationButtonsHover, elementFrame3, { 1590, 164 }, WHITE);
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
 			addElement({ 1591,164 });
 		}
 	}
 	else {
-		DrawTextureRec(equationButtons, elementFrame3, { 1591, 164 }, WHITE);
+		DrawTextureRec(equationButtons, elementFrame3, { 1590, 164 }, WHITE);
 	}
 }

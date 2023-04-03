@@ -198,7 +198,6 @@ void startApp() {
             Calculate = true;
             Guide = false;
 
-            DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
 
             displayCalculate(CalcBackground);
 
@@ -249,8 +248,6 @@ void startApp() {
                 }
             }
         }
-
-        DrawText(TextFormat("%0.f, %0.f", GetMousePosition().x, GetMousePosition().y), 0, 0, 20.f, WHITE);
 
         if (buttonQuitClicked(menuButtonPosition, mousePosition, buttonQuitCollision) == 1)
         {
