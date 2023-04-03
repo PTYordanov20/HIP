@@ -4,3 +4,5 @@
 void startApp();
 
 bool checkMouseButton();
+
+void fullscreenToggle();

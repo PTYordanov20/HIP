@@ -10,6 +10,12 @@ bool checkMouseButton() {
     }
 }
 
+void fullscreenToggle() {
+    if (IsKeyPressed(KEY_F11)) {
+        ToggleFullscreen();
+    }
+}
+
 //Reads which of the three buttons is clicked
 Vector2 chooseOption(Vector2 mousePosition)
 {
@@ -128,8 +134,6 @@ void startApp() {
     //Initializing screen resolution
     InitWindow(1920, 1080, "Chemistry Calculator");
 
-    ToggleFullscreen();
-
     Texture2D mainMenu = LoadTexture("./textures/mainMenu.png");
     Texture2D button1 = LoadTexture("./textures/mainMenuButton1.png");
     Texture2D button2 = LoadTexture("./textures/mainMenuButton2.png");
@@ -181,6 +185,8 @@ void startApp() {
 
         ClearBackground(RAYWHITE);
 
+        fullscreenToggle();
+
         if (buttonCalculateClicked(menuButtonPosition, mousePosition) == 0 && Calculate == false)
         {
             displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
@@ -205,6 +211,7 @@ void startApp() {
             buttonQuitCollision = { -100, -100, 0, 0 };
 
             if (IsKeyPressed(KEY_K)) {
+                deleteEquation();
                 Calculate = false;
                 oneButtonClicked = true;
 
@@ -228,12 +235,15 @@ void startApp() {
                 buttonQuitCollision = { -100, -100, 0, 0 };
 
                 if (IsKeyPressed(KEY_K)) {
+                    deleteEquation();
                     Guide = false;
                     oneButtonClicked = true;
 
                     displayMenu(mainMenu, button1, button1Hover, button2, button2Hover, button3, button3Hover);
 
                     buttonQuitCollision = { 800, 820, 375, 85 };
+
+                    
                 }
             }
         }

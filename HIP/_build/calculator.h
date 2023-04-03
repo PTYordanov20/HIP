@@ -12,3 +12,5 @@ void displayCalculatorButtons(Texture2D calculatorButtons, Texture2D calculatorB
 void displayEquationButtons(Texture2D equationButtons, Texture2D equationButtonsHover);
 
 void displayTextBox();
+
+void deleteEquation();
