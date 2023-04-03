@@ -134,6 +134,8 @@ void startApp() {
     //Initializing screen resolution
     InitWindow(1920, 1080, "Chemistry Calculator");
 
+    ToggleFullscreen();
+
     Texture2D mainMenu = LoadTexture("./textures/mainMenu.png");
     Texture2D button1 = LoadTexture("./textures/mainMenuButton1.png");
     Texture2D button2 = LoadTexture("./textures/mainMenuButton2.png");

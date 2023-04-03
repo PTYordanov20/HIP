@@ -14,3 +14,7 @@ void displayEquationButtons(Texture2D equationButtons, Texture2D equationButtons
 void displayTextBox();
 
 void deleteEquation();
+
+int gcd(int a, int b);
+
+int lcm(int a, int b);
