@@ -1,6 +1,6 @@
 #include "main.h"
 
-char equationText[24];
+char equationText[25];
 int textIndex = 0;
 
 void displayCalculate(Texture2D CalcBackground) {
@@ -9,10 +9,11 @@ void displayCalculate(Texture2D CalcBackground) {
 
 
 void addElement(Vector2 coordinates) {
-	if (textIndex >= 24) {
+
+	if (textIndex >= 25) {
 		return;
 	}
-	else if (coordinates.x == 79 && coordinates.y == 439) {
+	if (coordinates.x == 79 && coordinates.y == 439) {
 		equationText[textIndex++] = 'M';
 		equationText[textIndex++] = 'g';
 	}
@@ -122,9 +123,13 @@ void addElement(Vector2 coordinates) {
 		equationText[textIndex++] = '1';
 	}
 	else if (coordinates.x == 1591 && coordinates.y == 164) {
-		equationText[textIndex--] = '\0';
+		textIndex--;
+		if (textIndex < 0) {
+			textIndex = 0;
+		}
+		equationText[textIndex] = '\0';
 	}
-
+	
 }
 void displayTextBox() {
 	DrawText(equationText, 400, 183, 70, BLACK);
